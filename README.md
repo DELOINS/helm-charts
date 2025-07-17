@@ -10,7 +10,7 @@ Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
 Once Helm is set up properly, add the repo as follows:
 
 ```console
-helm repo add frinx https://FRINXio.github.io/helm-charts
+helm repo add frinx https://DELOINS.github.io/helm-charts
 ```
 
 You can then run `helm search repo frinx` to see the charts.
