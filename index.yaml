@@ -10,7 +10,7 @@ entries:
               url: https://github.com/FRINXio/helm-charts/pull/423
     apiVersion: v2
     appVersion: 7.0.0
-    created: "2025-07-17T15:34:36.731312079+02:00"
+    created: "2025-07-17T16:08:35.611951476+02:00"
     description: A Helm chart for creating postgres cluster via CloudNativePG operator
     digest: 7389cf25ca7e495c413b7ecd2bfd153c3c176608a1ded5b80cbaa0aadb737103
     icon: https://avatars.githubusercontent.com/u/23452093?s=200&v=4
@@ -32,7 +32,7 @@ entries:
               url: https://github.com/FRINXio/helm-charts/pull/348
     apiVersion: v2
     appVersion: 6.0.0
-    created: "2025-07-17T15:34:36.73088687+02:00"
+    created: "2025-07-17T16:08:35.611528292+02:00"
     description: A Helm chart for creating postgres cluster via CloudNativePG operator
     digest: 92c1208f9bfb30dae626e945ca9fc67f36fd2dc104aa1ce7c12ef3d432bc490e
     icon: https://avatars.githubusercontent.com/u/23452093?s=200&v=4
@@ -53,7 +53,7 @@ entries:
               url: https://github.com/FRINXio/helm-charts/pull/359
     apiVersion: v2
     appVersion: 3.9.9
-    created: "2025-07-17T15:34:36.731584226+02:00"
+    created: "2025-07-17T16:08:35.61225443+02:00"
     description: A Helm chart for Kubernetes deployment of the Arango CRD and ArangoDB
       configuration files
     digest: 6a682e879f1977a15202f99d9911b8dad20c9db85dc53779fa2790545042728c
@@ -81,7 +81,7 @@ entries:
           image: frinx/frinx-graphql-proxy:6.0.0
     apiVersion: v2
     appVersion: 6.0.0
-    created: "2025-07-17T15:34:36.732148064+02:00"
+    created: "2025-07-17T16:08:35.612820483+02:00"
     description: A Helm chart for Kubernetes deployment of the Frinx UI
     digest: b47d948deef2372f1f147d062c50774890ca9f50ca0ccd1417c97e936988d533
     icon: https://avatars.githubusercontent.com/u/23452093?s=200&v=4
@@ -94,8 +94,145 @@ entries:
     version: 4.0.1
   frinx-machine:
   - apiVersion: v2
+    appVersion: 7.0.0
+    created: "2025-07-17T16:08:35.734261896+02:00"
+    dependencies:
+    - condition: frinx-machine-operators.enabled
+      name: frinx-machine-operators
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - operators
+      version: 0.3.0
+    - condition: frinx-machine-monitoring.enabled
+      name: frinx-machine-monitoring
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - monitoring
+      version: 0.1.2
+    - alias: workflow-manager-postgres
+      condition: workflow-manager-postgres.enabled
+      name: cloud-native-pg
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - database
+      version: 1.0.0
+    - alias: uniconfig-postgres
+      condition: uniconfig-postgres.enabled
+      name: cloud-native-pg
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - database
+      version: 1.0.0
+    - condition: frinx-arango-config.enabled
+      name: frinx-arango-config
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - database
+      version: 4.2.0
+    - condition: kafka.enabled
+      name: kafka
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - database
+      version: 25.2.0
+    - alias: timescale-db
+      condition: timescale-db.enabled
+      name: cloud-native-pg
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - database
+      version: 1.0.0
+    - condition: krakend.enabled
+      name: krakend
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - backend
+      version: 5.0.2
+    - condition: frinx-frontend.enabled
+      name: frinx-frontend
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - backend
+      version: 4.1.0
+    - condition: resource-manager.enabled
+      name: resource-manager
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - backend
+      version: 2.3.1
+    - condition: workflow-manager.enabled
+      name: workflow-manager
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - backend
+      version: 3.2.1
+    - condition: inventory.enabled
+      name: inventory
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - backend
+      version: 6.0.2
+    - alias: uc-zone-lb
+      condition: uc-zone-lb.enabled
+      name: traefik
+      repository: https://traefik.github.io/charts
+      tags:
+      - backend
+      version: 27.0.2
+    - condition: uniconfig.enabled
+      name: uniconfig
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - backend
+      version: 8.2.2
+    - condition: topology-discovery.enabled
+      name: topology-discovery
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - backend
+      version: 4.0.0
+    - condition: performance-monitor.enabled
+      name: performance-monitor
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - backend
+      version: 2.0.0
+    - condition: swagger-ui.enabled
+      name: swagger-ui
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - backend
+      version: 0.2.0
+    - alias: device-induction
+      condition: device-induction.enabled
+      name: worker
+      repository: https://DELOINS.github.io/helm-charts
+      tags:
+      - backend
+      version: 4.1.0
+    - condition: oauth2-proxy.enabled
+      name: oauth2-proxy
+      repository: https://oauth2-proxy.github.io/manifests
+      version: 7.7.23
+    description: 'FRINX Machine is a dockerized deployment of multiple elements. The
+      FRINX Machine enables large scale automation of network devices, services and
+      retrieval of operational state data from a network. User specific workflows
+      are designed through the use of OpenConfig NETCONF & YANG models, vendor native
+      models, and the CLI. The FRINX Machine uses dockerized containers that are designed
+      and tested to work together to create a user specific solution. Further information
+      is available on [docs.frinx.io](https://docs.frinx.io/frinx-machine/getting-started/). '
+    digest: 097d9dc459ca5d625167b0b9f3309dc09ca160993bc78df3b5f6908312b993b4
+    icon: https://avatars.githubusercontent.com/u/23452093?s=200&v=4
+    maintainers:
+    - name: FRINX
+    name: frinx-machine
+    type: application
+    urls:
+    - https://github.com/DELOINS/helm-charts/releases/download/frinx-machine-11.0.0/frinx-machine-11.0.0.tgz
+    version: 11.0.0
+  - apiVersion: v2
     appVersion: 6.1.0
-    created: "2025-07-17T15:34:36.855239939+02:00"
+    created: "2025-07-17T16:08:35.858265334+02:00"
     dependencies:
     - condition: grafana.enabled
       name: grafana
@@ -212,7 +349,7 @@ entries:
     version: 9.0.0
   - apiVersion: v2
     appVersion: 6.0.0
-    created: "2025-07-17T15:34:36.781877043+02:00"
+    created: "2025-07-17T16:08:35.782501219+02:00"
     dependencies:
     - condition: kube-arangodb.enabled
       name: kube-arangodb
@@ -326,7 +463,7 @@ entries:
               url: https://github.com/FRINXio/helm-charts/pull/397
     apiVersion: v2
     appVersion: 6.1.0
-    created: "2025-07-17T15:34:36.863623649+02:00"
+    created: "2025-07-17T16:08:35.866358863+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -354,7 +491,7 @@ entries:
               url: https://github.com/FRINXio/helm-charts/pull/362
     apiVersion: v2
     appVersion: 6.0.1
-    created: "2025-07-17T15:34:36.859553123+02:00"
+    created: "2025-07-17T16:08:35.862326144+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -384,7 +521,7 @@ entries:
           image: frinx/krakend:6.0.0
     apiVersion: v2
     appVersion: 6.0.0
-    created: "2025-07-17T15:34:36.864684554+02:00"
+    created: "2025-07-17T16:08:35.867270097+02:00"
     description: FRINX KrakenD API Gateway for FRINX-machine
     digest: fc523523703638090c1d9a8ebdd78f7f13afc264c2e2801a7abd7942191fe6ec
     icon: https://avatars.githubusercontent.com/u/23452093?s=200&v=4
@@ -408,7 +545,7 @@ entries:
           image: frinx/performance-monitor:7.0.1
     apiVersion: v2
     appVersion: 7.0.1
-    created: "2025-07-17T15:34:36.87726006+02:00"
+    created: "2025-07-17T16:08:35.879801976+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -440,7 +577,7 @@ entries:
               url: https://github.com/FRINXio/helm-charts/pull/418
     apiVersion: v2
     appVersion: 6.1.0
-    created: "2025-07-17T15:34:36.889332313+02:00"
+    created: "2025-07-17T16:08:35.890207753+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -482,7 +619,7 @@ entries:
               url: https://github.com/FRINXio/helm-charts/pull/341
     apiVersion: v2
     appVersion: 6.0.0
-    created: "2025-07-17T15:34:36.881976499+02:00"
+    created: "2025-07-17T16:08:35.884582425+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -511,7 +648,7 @@ entries:
           image: swaggerapi/swagger-ui
     apiVersion: v2
     appVersion: v5.17.14
-    created: "2025-07-17T15:34:36.890642674+02:00"
+    created: "2025-07-17T16:08:35.890930403+02:00"
     description: A Helm chart for Swagger UI
     digest: f8ef41e9a7dde2986e6224d366dff0dcdc7f788d0a1e7e8e10f55510f493ca5b
     icon: https://avatars.githubusercontent.com/u/23452093?s=200&v=4
@@ -534,7 +671,7 @@ entries:
               url: https://github.com/FRINXio/helm-charts/pull/428
     apiVersion: v2
     appVersion: 7.0.3
-    created: "2025-07-17T15:34:36.891791345+02:00"
+    created: "2025-07-17T16:08:35.892051343+02:00"
     description: A Helm chart for Kubernetes deployment of the Topology Discovery
     digest: f126368115426fb67079bd5de2cf83882edf1420619e68778d69567217e3f2f2
     icon: https://avatars.githubusercontent.com/u/23452093?s=200&v=4
@@ -564,7 +701,7 @@ entries:
               url: https://github.com/FRINXio/helm-charts/pull/340
     apiVersion: v2
     appVersion: 6.0.0
-    created: "2025-07-17T15:34:36.891192023+02:00"
+    created: "2025-07-17T16:08:35.891458915+02:00"
     description: A Helm chart for Kubernetes deployment of the Topology Discovery
     digest: d0e97233ba18804ec1af6f68c2038bf0442013e522c20b3b48aefca76e75e450
     icon: https://avatars.githubusercontent.com/u/23452093?s=200&v=4
@@ -590,7 +727,7 @@ entries:
               url: https://github.com/FRINXio/helm-charts/pull/429
     apiVersion: v2
     appVersion: 7.0.0
-    created: "2025-07-17T15:34:36.920210145+02:00"
+    created: "2025-07-17T16:08:35.923577158+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -632,7 +769,7 @@ entries:
               url: https://github.com/FRINXio/helm-charts/pull/391
     apiVersion: v2
     appVersion: 6.1.1
-    created: "2025-07-17T15:34:36.908045883+02:00"
+    created: "2025-07-17T16:08:35.911098778+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -664,7 +801,7 @@ entries:
               url: https://github.com/FRINXio/helm-charts/pull/367
     apiVersion: v2
     appVersion: 6.0.0
-    created: "2025-07-17T15:34:36.896059126+02:00"
+    created: "2025-07-17T16:08:35.896447107+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -693,7 +830,7 @@ entries:
               url: https://github.com/FRINXio/helm-charts/pull/414
     apiVersion: v2
     appVersion: 6.1.0
-    created: "2025-07-17T15:34:36.921494645+02:00"
+    created: "2025-07-17T16:08:35.924587523+02:00"
     description: A Helm chart for conductor workers
     digest: d61cb62c68f044a52304051653c2459ccc9fd2970d0b17f046080ca45745bcd8
     home: https://github.com/FRINXio/helm-charts
@@ -714,7 +851,7 @@ entries:
               url: https://github.com/FRINXio/helm-charts/pull/364
     apiVersion: v2
     appVersion: 6.0.0
-    created: "2025-07-17T15:34:36.921037313+02:00"
+    created: "2025-07-17T16:08:35.924023307+02:00"
     description: A Helm chart for conductor workers
     digest: 986881fe9462e7016a738be8dfe43eee3f099fc589e1e6acde66fc666d1c3034
     home: https://github.com/FRINXio/helm-charts
@@ -741,7 +878,7 @@ entries:
           image: frinx/schellar:6.1.0
     apiVersion: v2
     appVersion: 6.1.0
-    created: "2025-07-17T15:34:36.93061348+02:00"
+    created: "2025-07-17T16:08:35.933776943+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -783,7 +920,7 @@ entries:
           image: frinx/schellar:6.0.0
     apiVersion: v2
     appVersion: 6.0.0
-    created: "2025-07-17T15:34:36.925822032+02:00"
+    created: "2025-07-17T16:08:35.929409662+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -799,4 +936,4 @@ entries:
     urls:
     - https://github.com/DELOINS/helm-charts/releases/download/workflow-manager-3.0.0/workflow-manager-3.0.0.tgz
     version: 3.0.0
-generated: "2025-07-17T15:34:36.730349994+02:00"
+generated: "2025-07-17T16:08:35.610977561+02:00"
